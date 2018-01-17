@@ -1,0 +1,49 @@
+<div>
+  <button class="btn btn-primary" (click)="createItem()">Create Item</button>
+</div>
+
+<br>
+
+<div class="input-group">
+  <span class="input-group-addon" id="basic-addon1">
+      <i class="glyphicon glyphicon-search"></i>
+    </span>
+  <input type="text" class="form-control" [(ngModel)]="searchText" name="searchText" placeholder="Item Search" aria-describedby="basic-addon1">
+</div>
+
+<br>
+
+<table class="table table-responsive table-hover">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th>Type</th>
+      <th>Active</th>
+      <th>Price</th>
+      <th>Edit</th>
+      <th>Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of itens | filters: searchText;">
+      <td>{{item.name}}</td>
+      <td>{{item.description}}</td>
+      <td>{{item.category}}</td>
+      <td>{{item.categorytype}}</td>
+      <td>{{item.isActive}}</td>
+      <td>{{item.price | currency:'AUD':true}}</td>
+      <td>
+        <span (click)="editItem(item)">
+          <i class="glyphicon glyphicon-edit"></i>
+        </span>
+      </td>
+      <td>
+        <span (click)="removeItem(item)">
+          <i class="glyphicon glyphicon-trash"></i>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>

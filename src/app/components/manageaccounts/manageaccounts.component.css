@@ -1,0 +1,5 @@
+.container {
+    opacity: .8; 
+    height: 480px;
+    overflow-y:scroll; 
+}

@@ -1,0 +1,96 @@
+<div class="bg">
+  <div class="container">
+    <div class="form row">
+
+      <div class="col-md-4">
+        Items Received -> Cook them
+        <ul class="media-list">
+          <p>
+            <button class="btn btn-primary" (click)="cookItens()">Processar</button>
+            <label style="float: right">
+              All
+              <input type="checkbox" (click)="selectAllItensToCook()">
+            </label>
+          </p>
+          <li class="media list-group-item" *ngFor="let oitem of itensOrdered">
+            <div class="media-heading">
+              {{oitem.orderedItem.name}}
+              <input style="float: right" type="checkbox" [(ngModel)]="oitem.isSelected">
+            </div>
+            <div class="media-body">
+              {{oitem.comments}}
+            </div>
+            <div class="media-bottom">
+              <p>
+                {{oitem.customer.username}}
+                <strong style="float: right;">
+                  Mesa: {{oitem.table}}
+                </strong>
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-4">
+        Cooking -> Finalize
+        <ul class="media-list">
+          <p>
+            <button class="btn btn-primary" (click)="finishItens()">Finalizar</button>
+            <label style="float: right">
+              All
+              <input type="checkbox" (click)="selectAllItensToFinish()">
+            </label>
+          </p>
+          <li class="media list-group-item" *ngFor="let pitem of itensCooking">
+            <div class="media-heading">
+              {{pitem.orderedItem.name}}
+              <input style="float: right" type="checkbox" [(ngModel)]="pitem.isSelected">
+            </div>
+            <div class="media-body">
+              {{pitem.comments}}
+            </div>
+            <div class="media-bottom">
+              <p>
+                {{pitem.customer.username}}
+                <strong style="float: right;">
+                  Mesa: {{pitem.table}}
+                </strong>
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-4">
+        Cooked -> Delivery
+        <ul class="media-list">
+          <p>
+            <button class="btn btn-primary" (click)="deliveryItens()">Entregar</button>
+            <label style="float: right">
+              All
+              <input type="checkbox" (click)="selectAllItensToDelivery()">
+            </label>
+          </p>
+          <li class="media list-group-item" *ngFor="let ditem of itensCooked">
+            <div class="media-heading">
+              {{ditem.orderedItem.name}}
+              <input style="float: right" type="checkbox" [(ngModel)]="ditem.isSelected">
+            </div>
+            <div class="media-body">
+              {{ditem.comments}}
+            </div>
+            <div class="media-bottom">
+              <p>
+                {{ditem.customer.username}}
+                <strong style="float: right;">
+                  Mesa: {{ditem.table}}
+                </strong>
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+
+<div class="modal-body">
+  <form (submit)="saveItem(item)">
+  <div class="form-group">
+    <label>*Item:</label>
+    <input type="text" [(ngModel)]="item.name" name="name" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>*Description:</label>
+    <textarea rows="3" [(ngModel)]="item.description" name="description" class="form-control">
+    </textarea>
+  </div>
+
+  <div class="form-group">
+    <label>*Category:</label>
+    <select [(ngModel)]="selectedCategory" name="category" class="form-control"
+            (ngModelChange)="selectedCategoryType = selectedCategory.categorytype[0];" >
+      <option class="dropdown" *ngFor="let c of categories" [ngValue]="c">
+        {{c.category}}
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>*Type:</label>
+    <select [(ngModel)]="selectedCategoryType" name="categorytype" class="form-control" >
+      <option class="dropdown" *ngFor="let categorytype of selectedCategory.categorytype" [ngValue]="categorytype">
+        {{categorytype}}
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label>*Price:</label>
+    <input type="number" [(ngModel)]="item.price" name="price" class="form-control">
+  </div>
+
+  <div class="form-group form-inline">
+    <label>Active: </label>
+    <input type="checkbox" [(ngModel)]="item.isActive" name="isActive" class="form-control">
+  </div>
+
+  <div class="modal-footer">
+    <input type="submit" class="btn btn-primary" value="Save">
+    <a class="btn btn-secondary" (click)="onClose()" 
+      style="background: lightsalmon; color: white">Close</a>
+  </div>
+</form>
+</div>

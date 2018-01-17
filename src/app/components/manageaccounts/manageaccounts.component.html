@@ -1,0 +1,63 @@
+<div class="container">
+
+  <div class="form-group form-inline">
+    <form style="width: 300px;" #myForm="ngForm" novalidate>
+      <label>
+        Search by Account opening date:
+      </label>
+      <my-date-picker name="mydate" [options]="myDatePickerOptions"
+                    [(ngModel)]="startDateValue" required
+                    placeholder="">              
+      </my-date-picker>
+    </form>
+  </div>
+
+  <table class="table table-responsive table-hover">
+    <thead>
+      <tr>
+        <th>Items</th>
+        <th>Account</th>
+        <th>Client</th>
+        <th>Table</th>
+        <th>Status</th>
+        <th>Opened at</th>
+        <th>Last Update</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let account of accounts | datefilter: startDateValue; let i = index">
+      <tr>
+        <td>
+          <a class="btn btn-link" (click)="toggle[i] = !toggle[i]">
+            <span class="glyphicon glyphicon-plus-sign" *ngIf="!toggle[i]"></span>
+            <span class="glyphicon glyphicon-minus-sign" *ngIf="toggle[i]"></span>
+          </a>
+        </td>
+        <td style="padding-top: 20px;">{{account.counter}}</td>
+        <td style="padding-top: 20px;">{{account.customer.username}}</td>
+        <td style="padding-top: 20px;">{{account.table}}</td>
+        <td style="padding-top: 20px;">{{account.status}}</td>
+        <td style="padding-top: 20px;">{{account.createdAt | date:'dd/MM/yyyy h:mma'}}</td>
+        <td style="padding-top: 20px;">{{account.updatedAt | date:'dd/MM/yyyy h:mma'}}</td>
+        <td style="padding-top: 20px;">{{account.price | currency:'AUD':true}}</td>
+      </tr>
+      <tr *ngIf="toggle[i]" style="background: darkgray; color: white;">
+        <td colspan="8">
+          <div class="row-fluid" style="text-align: center justify; margin-left: 100px;" *ngFor="let item of account.orderedItens">
+            <div class="col-md-4">
+              <span>Item: {{item.orderedItem.name}}</span>
+            </div>
+            <div class="col-md-4">
+              <span>Status: {{item.status}}</span>
+            </div>
+            <div id="price" class="col-md-4">
+              <span>Preço: {{item.orderedItem.price | currency:'AUD':true}}</span>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</div>
